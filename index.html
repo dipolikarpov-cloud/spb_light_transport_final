@@ -127,6 +127,19 @@
                 popup._contentNode.classList.remove('media');
             }
         }
+
+        function makeCleanPopupContent(feature, fields) {
+            var rows = '';
+            for (var i = 0; i < fields.length; i++) {
+                var key = fields[i][0];
+                var label = fields[i][1];
+                var value = feature.properties[key];
+                if (value !== null && value !== undefined && value !== '') {
+                    rows += '<tr><th scope="row">' + label + '</th><td>' + autolinker.link(String(value).replace(/'/g, '\\'').toLocaleString()) + '</td></tr>';
+                }
+            }
+            return '<table>' + rows + '</table>';
+        }
         var zoomControl = L.control.zoom({
             position: 'topleft'
         }).addTo(map);
@@ -149,10 +162,10 @@
             return function(cluster) {
                 var count = cluster.getChildCount();
                 return L.divIcon({
-                    html: '<div style="background:' + color + '; color:#111; border:1px solid rgba(255,255,255,0.85); border-radius:50%; width:24px; height:24px; line-height:22px; text-align:center; font-size:9px; font-weight:600; box-shadow:0 1px 3px rgba(0,0,0,0.30);">' + count + '</div>',
+                    html: '<div style="background:' + color + '; color:#111; border:2px solid rgba(255,255,255,0.85); border-radius:50%; width:34px; height:34px; line-height:30px; text-align:center; font-size:11px; font-weight:600; box-shadow:0 1px 4px rgba(0,0,0,0.35);">' + count + '</div>',
                     className: 'custom-transport-cluster',
-                    iconSize: [24, 24],
-                    iconAnchor: [12, 12]
+                    iconSize: [34, 34],
+                    iconAnchor: [17, 17]
                 });
             };
         }
@@ -162,7 +175,7 @@
             var baseLeft = Math.round((baseSize - svgSize) / 2);
             var baseTop = Math.round((baseSize - svgSize) / 2);
             var html = '<div style="position:relative;width:' + baseSize + 'px;height:' + baseSize + 'px;">' +
-                '<div style="position:absolute;left:0;top:0;width:' + baseSize + 'px;height:' + baseSize + 'px;background:#fff;border:' + borderWidth + 'px solid ' + color + ' !important;border-radius:' + radiusStyle + ';box-sizing:border-box;"></div>' +
+                '<div style="position:absolute;left:0;top:0;width:' + baseSize + 'px;height:' + baseSize + 'px;background:#fff;border:' + borderWidth + 'px solid ' + color + ';border-radius:' + radiusStyle + ';box-sizing:border-box;"></div>' +
                 '<img src="' + iconUrl + '" style="position:absolute;left:' + baseLeft + 'px;top:' + baseTop + 'px;width:' + svgSize + 'px;height:' + svgSize + 'px;display:block;" />' +
                 '</div>';
             return L.divIcon({
@@ -187,16 +200,8 @@
         layer_CartoDBPositron_0;
         map.addLayer(layer_CartoDBPositron_0);
         function pop_project_htmlboundary_petrograd_districts_1(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">name</th>\
-                        <td class="visible-with-data" id="name">' + (feature.properties['name'] !== null ? autolinker.link(String(feature.properties['name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+            var popupContent = makeCleanPopupContent(feature, [['name', 'Название']]);
+            var content = popupContent;
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
@@ -233,15 +238,8 @@
         bounds_group.addLayer(layer_project_htmlboundary_petrograd_districts_1);
         map.addLayer(layer_project_htmlboundary_petrograd_districts_1);
         function pop_project_htmltrol_buffer500_spb_2(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Количество проживающих'] !== null ? autolinker.link(String(feature.properties['Количество проживающих']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+            var popupContent = makeCleanPopupContent(feature, [['Количество проживающих', 'Количество проживающих']]);
+            var content = popupContent;
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
@@ -277,15 +275,8 @@
         });
         bounds_group.addLayer(layer_project_htmltrol_buffer500_spb_2);
         function pop_project_htmltram_buffer500_spb_3(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Количество проживающих'] !== null ? autolinker.link(String(feature.properties['Количество проживающих']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+            var popupContent = makeCleanPopupContent(feature, [['Количество проживающих', 'Количество проживающих']]);
+            var content = popupContent;
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
@@ -321,15 +312,8 @@
         });
         bounds_group.addLayer(layer_project_htmltram_buffer500_spb_3);
         function pop_project_htmlbus_buffer500_spb_4(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Количество проживающих'] !== null ? autolinker.link(String(feature.properties['Количество проживающих']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+            var popupContent = makeCleanPopupContent(feature, [['Количество проживающих', 'Количество проживающих']]);
+            var content = popupContent;
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
@@ -365,15 +349,8 @@
         });
         bounds_group.addLayer(layer_project_htmlbus_buffer500_spb_4);
         function pop_project_htmlall_buffer500_spb_5(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Количество проживающих'] !== null ? autolinker.link(String(feature.properties['Количество проживающих']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+            var popupContent = makeCleanPopupContent(feature, [['Количество проживающих', 'Количество проживающих']]);
+            var content = popupContent;
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
@@ -409,36 +386,8 @@
         });
         bounds_group.addLayer(layer_project_htmlall_buffer500_spb_5);
         function pop_project_htmlall_stops_distribution_6(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(String(feature.properties['id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['left'] !== null ? autolinker.link(String(feature.properties['left']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['top'] !== null ? autolinker.link(String(feature.properties['top']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['right'] !== null ? autolinker.link(String(feature.properties['right']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['bottom'] !== null ? autolinker.link(String(feature.properties['bottom']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['row_index'] !== null ? autolinker.link(String(feature.properties['row_index']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['col_index'] !== null ? autolinker.link(String(feature.properties['col_index']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid_count'] !== null ? autolinker.link(String(feature.properties['fid_count']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+            var popupContent = makeCleanPopupContent(feature, [['fid_count', 'Количество остановок НПГТ в заданном секторе']]);
+            var content = popupContent;
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
@@ -536,27 +485,8 @@
         });
         bounds_group.addLayer(layer_project_htmlall_stops_distribution_6);
         function pop_project_htmlbus_routes_spb_7(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['route_id'] !== null ? autolinker.link(String(feature.properties['route_id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['route_name'] !== null ? autolinker.link(String(feature.properties['route_name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['transport_type'] !== null ? autolinker.link(String(feature.properties['transport_type']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['direction'] !== null ? autolinker.link(String(feature.properties['direction']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['stops_count'] !== null ? autolinker.link(String(feature.properties['stops_count']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+            var popupContent = makeCleanPopupContent(feature, [['route_name', 'Маршрут'], ['transport_type', 'Вид транспорта']]);
+            var content = popupContent;
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
@@ -621,48 +551,8 @@
         bounds_group.addLayer(layer_project_htmlbus_routes_spb_7);
         map.addLayer(layer_project_htmlbus_routes_spb_7);
         function pop_project_htmlticket_sales_point_spb_8(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['№'] !== null ? autolinker.link(String(feature.properties['№']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="Полное наименование точки продаж билетов" colspan="2"><strong>Полное наименование точки продаж билетов</strong><br />' + (feature.properties['Полное наименование точки продаж билетов'] !== null ? autolinker.link(String(feature.properties['Полное наименование точки продаж билетов']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="Виды продаваемых билетов" colspan="2"><strong>Виды продаваемых билетов</strong><br />' + (feature.properties['Виды продаваемых билетов'] !== null ? autolinker.link(String(feature.properties['Виды продаваемых билетов']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Адрес'] !== null ? autolinker.link(String(feature.properties['Адрес']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Район города'] !== null ? autolinker.link(String(feature.properties['Район города']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Ближайшая станция метро'] !== null ? autolinker.link(String(feature.properties['Ближайшая станция метро']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Ответственный за точку продаж билетов'] !== null ? autolinker.link(String(feature.properties['Ответственный за точку продаж билетов']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Телефон'] !== null ? autolinker.link(String(feature.properties['Телефон']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Факс'] !== null ? autolinker.link(String(feature.properties['Факс']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Примечания'] !== null ? autolinker.link(String(feature.properties['Примечания']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['X'] !== null ? autolinker.link(String(feature.properties['X']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Y'] !== null ? autolinker.link(String(feature.properties['Y']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+            var popupContent = makeCleanPopupContent(feature, [['Полное наименование точки продаж билетов', 'Полное наименование точки продаж билетов'], ['Виды продаваемых билетов', 'Виды продаваемых билетов']]);
+            var content = popupContent;
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
@@ -744,48 +634,8 @@
         });
         bounds_group.addLayer(layer_project_htmlticket_sales_point_spb_8);
         function pop_project_htmltrol_depot_spb_9(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['№'] !== null ? autolinker.link(String(feature.properties['№']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="Полное наименование транспортного парка" colspan="2"><strong>Полное наименование транспортного парка</strong><br />' + (feature.properties['Полное наименование транспортного парка'] !== null ? autolinker.link(String(feature.properties['Полное наименование транспортного парка']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Тип транспортного средства'] !== null ? autolinker.link(String(feature.properties['Тип транспортного средства']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Адрес'] !== null ? autolinker.link(String(feature.properties['Адрес']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Район города'] !== null ? autolinker.link(String(feature.properties['Район города']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Ближайшая станция метро'] !== null ? autolinker.link(String(feature.properties['Ближайшая станция метро']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Ответственный за транспортный парк'] !== null ? autolinker.link(String(feature.properties['Ответственный за транспортный парк']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Телефон'] !== null ? autolinker.link(String(feature.properties['Телефон']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Факс'] !== null ? autolinker.link(String(feature.properties['Факс']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Примечания'] !== null ? autolinker.link(String(feature.properties['Примечания']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['X'] !== null ? autolinker.link(String(feature.properties['X']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Y'] !== null ? autolinker.link(String(feature.properties['Y']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+            var popupContent = makeCleanPopupContent(feature, [['Полное наименование транспортного парка', 'Полное наименование транспортного парка']]);
+            var content = popupContent;
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
@@ -838,52 +688,12 @@
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, {icon: createStackedMarkerIcon('square', '#4C65AE', 'markers/project_htmltrol_depot_spb_9.svg', 14, 22, 1), interactive: true});
+                return L.marker(latlng, {icon: createStackedMarkerIcon('square', '#4C65AE', 'markers/project_htmltrol_depot_spb_9.svg', 14, 22, 2), interactive: true});
             }});
         bounds_group.addLayer(layer_project_htmltrol_depot_spb_9);
         function pop_project_htmltram_trol_depot_spb_10(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['№'] !== null ? autolinker.link(String(feature.properties['№']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="Полное наименование транспортного парка" colspan="2"><strong>Полное наименование транспортного парка</strong><br />' + (feature.properties['Полное наименование транспортного парка'] !== null ? autolinker.link(String(feature.properties['Полное наименование транспортного парка']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Тип транспортного средства'] !== null ? autolinker.link(String(feature.properties['Тип транспортного средства']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Адрес'] !== null ? autolinker.link(String(feature.properties['Адрес']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Район города'] !== null ? autolinker.link(String(feature.properties['Район города']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Ближайшая станция метро'] !== null ? autolinker.link(String(feature.properties['Ближайшая станция метро']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Ответственный за транспортный парк'] !== null ? autolinker.link(String(feature.properties['Ответственный за транспортный парк']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Телефон'] !== null ? autolinker.link(String(feature.properties['Телефон']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Факс'] !== null ? autolinker.link(String(feature.properties['Факс']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Примечания'] !== null ? autolinker.link(String(feature.properties['Примечания']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['X'] !== null ? autolinker.link(String(feature.properties['X']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Y'] !== null ? autolinker.link(String(feature.properties['Y']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+            var popupContent = makeCleanPopupContent(feature, [['Полное наименование транспортного парка', 'Полное наименование транспортного парка']]);
+            var content = popupContent;
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
@@ -936,52 +746,12 @@
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, {icon: createStackedMarkerIcon('square', '#4C65AE', 'markers/project_htmltram_trol_depot_spb_10.svg', 14, 22, 1), interactive: true});
+                return L.marker(latlng, {icon: createStackedMarkerIcon('square', '#4C65AE', 'markers/project_htmltram_trol_depot_spb_10.svg', 14, 22, 2), interactive: true});
             }});
         bounds_group.addLayer(layer_project_htmltram_trol_depot_spb_10);
         function pop_project_htmltram_depot_spb_11(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['№'] !== null ? autolinker.link(String(feature.properties['№']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="Полное наименование транспортного парка" colspan="2"><strong>Полное наименование транспортного парка</strong><br />' + (feature.properties['Полное наименование транспортного парка'] !== null ? autolinker.link(String(feature.properties['Полное наименование транспортного парка']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Тип транспортного средства'] !== null ? autolinker.link(String(feature.properties['Тип транспортного средства']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Адрес'] !== null ? autolinker.link(String(feature.properties['Адрес']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Район города'] !== null ? autolinker.link(String(feature.properties['Район города']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Ближайшая станция метро'] !== null ? autolinker.link(String(feature.properties['Ближайшая станция метро']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Ответственный за транспортный парк'] !== null ? autolinker.link(String(feature.properties['Ответственный за транспортный парк']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Телефон'] !== null ? autolinker.link(String(feature.properties['Телефон']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Факс'] !== null ? autolinker.link(String(feature.properties['Факс']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Примечания'] !== null ? autolinker.link(String(feature.properties['Примечания']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['X'] !== null ? autolinker.link(String(feature.properties['X']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Y'] !== null ? autolinker.link(String(feature.properties['Y']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+            var popupContent = makeCleanPopupContent(feature, [['Полное наименование транспортного парка', 'Полное наименование транспортного парка']]);
+            var content = popupContent;
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
@@ -1034,52 +804,12 @@
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, {icon: createStackedMarkerIcon('square', '#C4373F', 'markers/project_htmltram_depot_spb_11.svg', 14, 22, 1), interactive: true});
+                return L.marker(latlng, {icon: createStackedMarkerIcon('square', '#C4373F', 'markers/project_htmltram_depot_spb_11.svg', 14, 22, 2), interactive: true});
             }});
         bounds_group.addLayer(layer_project_htmltram_depot_spb_11);
         function pop_project_htmlbus_depot_spb_12(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['№'] !== null ? autolinker.link(String(feature.properties['№']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="Полное наименование транспортного парка" colspan="2"><strong>Полное наименование транспортного парка</strong><br />' + (feature.properties['Полное наименование транспортного парка'] !== null ? autolinker.link(String(feature.properties['Полное наименование транспортного парка']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Тип транспортного средства'] !== null ? autolinker.link(String(feature.properties['Тип транспортного средства']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Адрес'] !== null ? autolinker.link(String(feature.properties['Адрес']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Район города'] !== null ? autolinker.link(String(feature.properties['Район города']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Ближайшая станция метро'] !== null ? autolinker.link(String(feature.properties['Ближайшая станция метро']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Ответственный за транспортный парк'] !== null ? autolinker.link(String(feature.properties['Ответственный за транспортный парк']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Телефон'] !== null ? autolinker.link(String(feature.properties['Телефон']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Факс'] !== null ? autolinker.link(String(feature.properties['Факс']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Примечания'] !== null ? autolinker.link(String(feature.properties['Примечания']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['X'] !== null ? autolinker.link(String(feature.properties['X']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Y'] !== null ? autolinker.link(String(feature.properties['Y']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+            var popupContent = makeCleanPopupContent(feature, [['Полное наименование транспортного парка', 'Полное наименование транспортного парка']]);
+            var content = popupContent;
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
@@ -1132,46 +862,12 @@
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, {icon: createStackedMarkerIcon('square', '#2C8059', 'markers/project_htmlbus_depot_spb_12.svg', 14, 22, 1), interactive: true});
+                return L.marker(latlng, {icon: createStackedMarkerIcon('square', '#2C8059', 'markers/project_htmlbus_depot_spb_12.svg', 14, 22, 2), interactive: true});
             }});
         bounds_group.addLayer(layer_project_htmlbus_depot_spb_12);
         function pop_project_htmlbus_stop_pop_spb_13(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['№'] !== null ? autolinker.link(String(feature.properties['№']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Вид транспортного средства'] !== null ? autolinker.link(String(feature.properties['Вид транспортного средства']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Тип объекта'] !== null ? autolinker.link(String(feature.properties['Тип объекта']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="Наименование остановки" colspan="2"><strong>Наименование остановки</strong><br />' + (feature.properties['Наименование остановки'] !== null ? autolinker.link(String(feature.properties['Наименование остановки']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Официальное наименование'] !== null ? autolinker.link(String(feature.properties['Официальное наименование']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Расположение'] !== null ? autolinker.link(String(feature.properties['Расположение']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="Маршруты" colspan="2"><strong>Маршруты</strong><br />' + (feature.properties['Маршруты'] !== null ? autolinker.link(String(feature.properties['Маршруты']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['X'] !== null ? autolinker.link(String(feature.properties['X']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Y'] !== null ? autolinker.link(String(feature.properties['Y']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Количество проживающих_sum'] !== null ? autolinker.link(String(feature.properties['Количество проживающих_sum']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+            var popupContent = makeCleanPopupContent(feature, [['Наименование остановки', 'Наименование остановки'], ['Маршруты', 'Маршруты']]);
+            var content = popupContent;
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
@@ -1223,7 +919,7 @@
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, {icon: createStackedMarkerIcon('circle', '#2C8059', 'markers/project_htmlbus_stop_pop_spb_13.svg', 13, 20, 1), interactive: true});
+                return L.marker(latlng, {icon: createStackedMarkerIcon('circle', '#2C8059', 'markers/project_htmlbus_stop_pop_spb_13.svg', 13, 20, 2), interactive: true});
             }});
         var cluster_project_htmlbus_stop_pop_spb_13 = new L.MarkerClusterGroup({showCoverageOnHover: false,
             spiderfyDistanceMultiplier: 2,
@@ -1235,42 +931,8 @@
         bounds_group.addLayer(layer_project_htmlbus_stop_pop_spb_13);
         cluster_project_htmlbus_stop_pop_spb_13.addTo(map);
         function pop_project_htmltrolleybus_stop_pop_spb_14(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['№'] !== null ? autolinker.link(String(feature.properties['№']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Вид транспортного средства'] !== null ? autolinker.link(String(feature.properties['Вид транспортного средства']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Тип объекта'] !== null ? autolinker.link(String(feature.properties['Тип объекта']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="Наименование остановки" colspan="2"><strong>Наименование остановки</strong><br />' + (feature.properties['Наименование остановки'] !== null ? autolinker.link(String(feature.properties['Наименование остановки']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Официальное наименование'] !== null ? autolinker.link(String(feature.properties['Официальное наименование']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Расположение'] !== null ? autolinker.link(String(feature.properties['Расположение']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="Маршруты" colspan="2"><strong>Маршруты</strong><br />' + (feature.properties['Маршруты'] !== null ? autolinker.link(String(feature.properties['Маршруты']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['X'] !== null ? autolinker.link(String(feature.properties['X']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Y'] !== null ? autolinker.link(String(feature.properties['Y']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Количество проживающих_sum'] !== null ? autolinker.link(String(feature.properties['Количество проживающих_sum']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+            var popupContent = makeCleanPopupContent(feature, [['Наименование остановки', 'Наименование остановки'], ['Маршруты', 'Маршруты']]);
+            var content = popupContent;
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
@@ -1322,7 +984,7 @@
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, {icon: createStackedMarkerIcon('circle', '#4C65AE', 'markers/project_htmltrolleybus_stop_pop_spb_14.svg', 13, 20, 1), interactive: true});
+                return L.marker(latlng, {icon: createStackedMarkerIcon('circle', '#4C65AE', 'markers/project_htmltrolleybus_stop_pop_spb_14.svg', 13, 20, 2), interactive: true});
             }});
         var cluster_project_htmltrolleybus_stop_pop_spb_14 = new L.MarkerClusterGroup({showCoverageOnHover: false,
             spiderfyDistanceMultiplier: 2,
@@ -1334,42 +996,8 @@
         bounds_group.addLayer(layer_project_htmltrolleybus_stop_pop_spb_14);
         cluster_project_htmltrolleybus_stop_pop_spb_14.addTo(map);
         function pop_project_htmltram_stop_pop_spb_15(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['№'] !== null ? autolinker.link(String(feature.properties['№']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Вид транспортного средства'] !== null ? autolinker.link(String(feature.properties['Вид транспортного средства']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Тип объекта'] !== null ? autolinker.link(String(feature.properties['Тип объекта']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="Наименование остановки" colspan="2"><strong>Наименование остановки</strong><br />' + (feature.properties['Наименование остановки'] !== null ? autolinker.link(String(feature.properties['Наименование остановки']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Официальное наименование'] !== null ? autolinker.link(String(feature.properties['Официальное наименование']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Расположение'] !== null ? autolinker.link(String(feature.properties['Расположение']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="Маршруты" colspan="2"><strong>Маршруты</strong><br />' + (feature.properties['Маршруты'] !== null ? autolinker.link(String(feature.properties['Маршруты']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['X'] !== null ? autolinker.link(String(feature.properties['X']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Y'] !== null ? autolinker.link(String(feature.properties['Y']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Количество проживающих_sum'] !== null ? autolinker.link(String(feature.properties['Количество проживающих_sum']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+            var popupContent = makeCleanPopupContent(feature, [['Наименование остановки', 'Наименование остановки'], ['Маршруты', 'Маршруты']]);
+            var content = popupContent;
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
@@ -1421,7 +1049,7 @@
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, {icon: createStackedMarkerIcon('circle', '#C4373F', 'markers/project_htmltram_stop_pop_spb_15.svg', 13, 20, 1), interactive: true});
+                return L.marker(latlng, {icon: createStackedMarkerIcon('circle', '#C4373F', 'markers/project_htmltram_stop_pop_spb_15.svg', 13, 20, 2), interactive: true});
             }});
         var cluster_project_htmltram_stop_pop_spb_15 = new L.MarkerClusterGroup({showCoverageOnHover: false,
             spiderfyDistanceMultiplier: 2,
@@ -1486,21 +1114,21 @@
             }
         });
         var overlaysTree = [
-            {label: '<img src="legend/project_htmltram_stop_pop_spb_15.png" /> project_html — tram_stop_pop_spb', layer: cluster_project_htmltram_stop_pop_spb_15},
-            {label: '<img src="legend/project_htmltrolleybus_stop_pop_spb_14.png" /> project_html — trolleybus_stop_pop_spb', layer: cluster_project_htmltrolleybus_stop_pop_spb_14},
-            {label: '<img src="legend/project_htmlbus_stop_pop_spb_13.png" /> project_html — bus_stop_pop_spb', layer: cluster_project_htmlbus_stop_pop_spb_13},
-            {label: '<img src="legend/project_htmlbus_depot_spb_12.png" /> project_html — bus_depot_spb', layer: layer_project_htmlbus_depot_spb_12},
-            {label: '<img src="legend/project_htmltram_depot_spb_11.png" /> project_html — tram_depot_spb', layer: layer_project_htmltram_depot_spb_11},
-            {label: '<img src="legend/project_htmltram_trol_depot_spb_10.png" /> project_html — tram_trol_depot_spb', layer: layer_project_htmltram_trol_depot_spb_10},
-            {label: '<img src="legend/project_htmltrol_depot_spb_9.png" /> project_html — trol_depot_spb', layer: layer_project_htmltrol_depot_spb_9},
-            {label: 'project_html — ticket_sales_point_spb<br /><table><tr><td style="text-align: center;"><img src="legend/project_htmlticket_sales_point_spb_8_Всевиды0.png" /></td><td>Все виды</td></tr><tr><td style="text-align: center;"><img src="legend/project_htmlticket_sales_point_spb_8_Наземныйтранспорт1.png" /></td><td>Наземный транспорт</td></tr><tr><td style="text-align: center;"><img src="legend/project_htmlticket_sales_point_spb_8_ТолькоМесячныйименнойкомбинированныйтрамвайтроллейбусавтобусбилетдлястудентов2.png" /></td><td>Только «Месячный именной комбинированный (трамвай, троллейбус, автобус) билет для студентов»</td></tr></table>', layer: layer_project_htmlticket_sales_point_spb_8},
-            {label: 'project_html — bus_routes_spb<br /><table><tr><td style="text-align: center;"><img src="legend/project_htmlbus_routes_spb_7_Автобус0.png" /></td><td>Автобус</td></tr><tr><td style="text-align: center;"><img src="legend/project_htmlbus_routes_spb_7_Трамвай1.png" /></td><td>Трамвай</td></tr><tr><td style="text-align: center;"><img src="legend/project_htmlbus_routes_spb_7_Троллейбус2.png" /></td><td>Троллейбус</td></tr></table>', layer: layer_project_htmlbus_routes_spb_7},
-            {label: 'project_html — all_stops_distribution<br /><table><tr><td style="text-align: center;"><img src="legend/project_htmlall_stops_distribution_6_180.png" /></td><td>1 - 8</td></tr><tr><td style="text-align: center;"><img src="legend/project_htmlall_stops_distribution_6_8181.png" /></td><td>8 - 18</td></tr><tr><td style="text-align: center;"><img src="legend/project_htmlall_stops_distribution_6_18302.png" /></td><td>18 - 30</td></tr><tr><td style="text-align: center;"><img src="legend/project_htmlall_stops_distribution_6_30423.png" /></td><td>30 - 42</td></tr><tr><td style="text-align: center;"><img src="legend/project_htmlall_stops_distribution_6_42754.png" /></td><td>42 - 75</td></tr></table>', layer: layer_project_htmlall_stops_distribution_6},
-            {label: '<img src="legend/project_htmlall_buffer500_spb_5.png" /> project_html — all_buffer500_spb', layer: layer_project_htmlall_buffer500_spb_5},
-            {label: '<img src="legend/project_htmlbus_buffer500_spb_4.png" /> project_html — bus_buffer500_spb', layer: layer_project_htmlbus_buffer500_spb_4},
-            {label: '<img src="legend/project_htmltram_buffer500_spb_3.png" /> project_html — tram_buffer500_spb', layer: layer_project_htmltram_buffer500_spb_3},
-            {label: '<img src="legend/project_htmltrol_buffer500_spb_2.png" /> project_html — trol_buffer500_spb', layer: layer_project_htmltrol_buffer500_spb_2},
-            {label: '<img src="legend/project_htmlboundary_petrograd_districts_1.png" /> project_html — boundary_petrograd_districts', layer: layer_project_htmlboundary_petrograd_districts_1},
+            {label: '<img src="legend/project_htmltram_stop_pop_spb_15.png" /> Трамвайные остановки', layer: cluster_project_htmltram_stop_pop_spb_15},
+            {label: '<img src="legend/project_htmltrolleybus_stop_pop_spb_14.png" /> Троллейбусные остановки', layer: cluster_project_htmltrolleybus_stop_pop_spb_14},
+            {label: '<img src="legend/project_htmlbus_stop_pop_spb_13.png" /> Автобусные остановки', layer: cluster_project_htmlbus_stop_pop_spb_13},
+            {label: '<img src="legend/project_htmlbus_depot_spb_12.png" /> Автобусное депо', layer: layer_project_htmlbus_depot_spb_12},
+            {label: '<img src="legend/project_htmltram_depot_spb_11.png" /> Трамвайное депо', layer: layer_project_htmltram_depot_spb_11},
+            {label: '<img src="legend/project_htmltram_trol_depot_spb_10.png" /> Трамвайно-троллейбусное депо', layer: layer_project_htmltram_trol_depot_spb_10},
+            {label: '<img src="legend/project_htmltrol_depot_spb_9.png" /> Троллейбусное депо', layer: layer_project_htmltrol_depot_spb_9},
+            {label: 'Места продажи билетов<br /><table><tr><td style="text-align: center;"><img src="legend/project_htmlticket_sales_point_spb_8_Всевиды0.png" /></td><td>Все виды</td></tr><tr><td style="text-align: center;"><img src="legend/project_htmlticket_sales_point_spb_8_Наземныйтранспорт1.png" /></td><td>Наземный транспорт</td></tr><tr><td style="text-align: center;"><img src="legend/project_htmlticket_sales_point_spb_8_ТолькоМесячныйименнойкомбинированныйтрамвайтроллейбусавтобусбилетдлястудентов2.png" /></td><td>Только «Месячный именной комбинированный (трамвай, троллейбус, автобус) билет для студентов»</td></tr></table>', layer: layer_project_htmlticket_sales_point_spb_8},
+            {label: 'Линии маршрутов НПГТ<br /><table><tr><td style="text-align: center;"><img src="legend/project_htmlbus_routes_spb_7_Автобус0.png" /></td><td>Автобус</td></tr><tr><td style="text-align: center;"><img src="legend/project_htmlbus_routes_spb_7_Трамвай1.png" /></td><td>Трамвай</td></tr><tr><td style="text-align: center;"><img src="legend/project_htmlbus_routes_spb_7_Троллейбус2.png" /></td><td>Троллейбус</td></tr></table>', layer: layer_project_htmlbus_routes_spb_7},
+            {label: 'Количество остановок НПГТ в заданном секторе<br /><table><tr><td style="text-align: center;"><img src="legend/project_htmlall_stops_distribution_6_180.png" /></td><td>1 - 8</td></tr><tr><td style="text-align: center;"><img src="legend/project_htmlall_stops_distribution_6_8181.png" /></td><td>8 - 18</td></tr><tr><td style="text-align: center;"><img src="legend/project_htmlall_stops_distribution_6_18302.png" /></td><td>18 - 30</td></tr><tr><td style="text-align: center;"><img src="legend/project_htmlall_stops_distribution_6_30423.png" /></td><td>30 - 42</td></tr><tr><td style="text-align: center;"><img src="legend/project_htmlall_stops_distribution_6_42754.png" /></td><td>42 - 75</td></tr></table>', layer: layer_project_htmlall_stops_distribution_6},
+            {label: '<img src="legend/project_htmlall_buffer500_spb_5.png" /> Буферы доступности 500 м от остановок НПГТ', layer: layer_project_htmlall_buffer500_spb_5},
+            {label: '<img src="legend/project_htmlbus_buffer500_spb_4.png" /> Буфер доступности 500 м от автобусных остановок', layer: layer_project_htmlbus_buffer500_spb_4},
+            {label: '<img src="legend/project_htmltram_buffer500_spb_3.png" /> Буфер доступности 500 м от трамвайных остановок', layer: layer_project_htmltram_buffer500_spb_3},
+            {label: '<img src="legend/project_htmltrol_buffer500_spb_2.png" /> Буфер доступности 500 м от троллейбусных остановок', layer: layer_project_htmltrol_buffer500_spb_2},
+            {label: '<img src="legend/project_htmlboundary_petrograd_districts_1.png" /> Границы округов', layer: layer_project_htmlboundary_petrograd_districts_1},
             {label: "CartoDB Positron", layer: layer_CartoDBPositron_0, radioGroup: 'bm' },]
         var lay = L.control.layers.tree(null, overlaysTree,{
             //namedToggle: true,
