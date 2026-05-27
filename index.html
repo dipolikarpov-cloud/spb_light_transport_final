@@ -196,7 +196,7 @@
                 var label = fields[i][1];
                 var value = feature.properties[key];
                 if (value !== null && value !== undefined && value !== '') {
-                    rows += '<tr><th scope="row">' + label + '</th><td>' + autolinker.link(String(value).replace(/'/g, '\\'').toLocaleString()) + '</td></tr>';
+                    rows += '<tr><th scope="row">' + label + '</th><td>' + autolinker.link(String(value).toLocaleString()) + '</td></tr>';
                 }
             }
             return '<table>' + rows + '</table>';
