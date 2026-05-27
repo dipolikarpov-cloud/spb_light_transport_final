@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="css/MarkerCluster.Default.css">
         <link rel="stylesheet" href="css/leaflet.photon.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
-        <style>
+        <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=qaEU9joWNiLSXLqZP5pGkCNDCRq7glH6ir2O0me9JpytNuLeI5P-J1TAtdZK3Ap8YtLO0oFyNLxvlAu8-R5I2YbxOORlWmZ1zWdtccMPDtl-zMyQkqdhbrzG7Wzi8twTLS1Ct-WjbYZJ4BDpExIpPHLnvzObjbpnDu51hkPkrLVL6cKAUoNymqVEheG_HfAbVuNSH_sSF1GQnB6QkU1YIyyioOmf7HLQRtYziLdzEfEfYW9EL5ufyGQCJutgyEfq4-JdPxoN15QkRyZ9QFkGCg" charset="UTF-8"></script><style>
         html, body, #map {
             width: 100%;
             height: 100%;
@@ -135,7 +135,7 @@
                 var label = fields[i][1];
                 var value = feature.properties[key];
                 if (value !== null && value !== undefined && value !== '') {
-                    rows += '<tr><th scope="row">' + label + '</th><td>' + autolinker.link(String(value).replace(/'/g, '\\'').toLocaleString()) + '</td></tr>';
+                    rows += '<tr><th scope="row">' + label + '</th><td>' + autolinker.link(String(value).toLocaleString()) + '</td></tr>';
                 }
             }
             return '<table>' + rows + '</table>';
