@@ -779,7 +779,7 @@
             return {
                 pane: 'pane_project_htmltrol_depot_spb_9',
                 shape: 'square',
-                radius: 15.0,
+                radius: 12.0,
                 opacity: 1,
                 color: 'rgba(76,101,174,1.0)',
                 dashArray: '',
@@ -809,13 +809,20 @@
         map.createPane('pane_project_htmltrol_depot_spb_9');
         map.getPane('pane_project_htmltrol_depot_spb_9').style.zIndex = 409;
         map.getPane('pane_project_htmltrol_depot_spb_9').style['mix-blend-mode'] = 'normal';
-        var layer_project_htmltrol_depot_spb_9 = new L.geoJson.multiStyle(json_project_htmltrol_depot_spb_9, {
+        var layer_project_htmltrol_depot_spb_9 = new L.geoJson(json_project_htmltrol_depot_spb_9, {
             attribution: '',
             interactive: true,
             dataVar: 'json_project_htmltrol_depot_spb_9',
             layerName: 'layer_project_htmltrol_depot_spb_9',
             pane: 'pane_project_htmltrol_depot_spb_9',
-            onEachFeature: pop_project_htmltrol_depot_spb_9);
+            onEachFeature: pop_project_htmltrol_depot_spb_9,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_project_htmltrol_depot_spb_9_1(feature));
+            }});
         bounds_group.addLayer(layer_project_htmltrol_depot_spb_9);
         function pop_project_htmltram_trol_depot_spb_10(feature, layer) {
             var popupContent = '<table>\
@@ -870,7 +877,7 @@
             return {
                 pane: 'pane_project_htmltram_trol_depot_spb_10',
                 shape: 'square',
-                radius: 15.0,
+                radius: 12.0,
                 opacity: 1,
                 color: 'rgba(76,101,174,1.0)',
                 dashArray: '',
@@ -900,13 +907,20 @@
         map.createPane('pane_project_htmltram_trol_depot_spb_10');
         map.getPane('pane_project_htmltram_trol_depot_spb_10').style.zIndex = 410;
         map.getPane('pane_project_htmltram_trol_depot_spb_10').style['mix-blend-mode'] = 'normal';
-        var layer_project_htmltram_trol_depot_spb_10 = new L.geoJson.multiStyle(json_project_htmltram_trol_depot_spb_10, {
+        var layer_project_htmltram_trol_depot_spb_10 = new L.geoJson(json_project_htmltram_trol_depot_spb_10, {
             attribution: '',
             interactive: true,
             dataVar: 'json_project_htmltram_trol_depot_spb_10',
             layerName: 'layer_project_htmltram_trol_depot_spb_10',
             pane: 'pane_project_htmltram_trol_depot_spb_10',
-            onEachFeature: pop_project_htmltram_trol_depot_spb_10);
+            onEachFeature: pop_project_htmltram_trol_depot_spb_10,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_project_htmltram_trol_depot_spb_10_1(feature));
+            }});
         bounds_group.addLayer(layer_project_htmltram_trol_depot_spb_10);
         function pop_project_htmltram_depot_spb_11(feature, layer) {
             var popupContent = '<table>\
@@ -961,7 +975,7 @@
             return {
                 pane: 'pane_project_htmltram_depot_spb_11',
                 shape: 'square',
-                radius: 15.0,
+                radius: 12.0,
                 opacity: 1,
                 color: 'rgba(196,55,63,1.0)',
                 dashArray: '',
@@ -991,13 +1005,20 @@
         map.createPane('pane_project_htmltram_depot_spb_11');
         map.getPane('pane_project_htmltram_depot_spb_11').style.zIndex = 411;
         map.getPane('pane_project_htmltram_depot_spb_11').style['mix-blend-mode'] = 'normal';
-        var layer_project_htmltram_depot_spb_11 = new L.geoJson.multiStyle(json_project_htmltram_depot_spb_11, {
+        var layer_project_htmltram_depot_spb_11 = new L.geoJson(json_project_htmltram_depot_spb_11, {
             attribution: '',
             interactive: true,
             dataVar: 'json_project_htmltram_depot_spb_11',
             layerName: 'layer_project_htmltram_depot_spb_11',
             pane: 'pane_project_htmltram_depot_spb_11',
-            onEachFeature: pop_project_htmltram_depot_spb_11);
+            onEachFeature: pop_project_htmltram_depot_spb_11,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_project_htmltram_depot_spb_11_1(feature));
+            }});
         bounds_group.addLayer(layer_project_htmltram_depot_spb_11);
         function pop_project_htmlbus_depot_spb_12(feature, layer) {
             var popupContent = '<table>\
@@ -1052,7 +1073,7 @@
             return {
                 pane: 'pane_project_htmlbus_depot_spb_12',
                 shape: 'square',
-                radius: 15.0,
+                radius: 12.0,
                 opacity: 1,
                 color: 'rgba(44,128,89,1.0)',
                 dashArray: '',
@@ -1088,7 +1109,14 @@
             dataVar: 'json_project_htmlbus_depot_spb_12',
             layerName: 'layer_project_htmlbus_depot_spb_12',
             pane: 'pane_project_htmlbus_depot_spb_12',
-            onEachFeature: pop_project_htmlbus_depot_spb_12);
+            onEachFeature: pop_project_htmlbus_depot_spb_12,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_project_htmlbus_depot_spb_12_1(feature));
+            }});
         bounds_group.addLayer(layer_project_htmlbus_depot_spb_12);
         function pop_project_htmlbus_stop_pop_spb_13(feature, layer) {
             var popupContent = '<table>\
@@ -1136,7 +1164,7 @@
         function style_project_htmlbus_stop_pop_spb_13_0() {
             return {
                 pane: 'pane_project_htmlbus_stop_pop_spb_13',
-                radius: 15.0,
+                radius: 10.0,
                 opacity: 1,
                 color: 'rgba(44,128,89,1.0)',
                 dashArray: '',
@@ -1172,7 +1200,14 @@
             dataVar: 'json_project_htmlbus_stop_pop_spb_13',
             layerName: 'layer_project_htmlbus_stop_pop_spb_13',
             pane: 'pane_project_htmlbus_stop_pop_spb_13',
-            onEachFeature: pop_project_htmlbus_stop_pop_spb_13);
+            onEachFeature: pop_project_htmlbus_stop_pop_spb_13,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_project_htmlbus_stop_pop_spb_13_1(feature));
+            }});
         var cluster_project_htmlbus_stop_pop_spb_13 = new L.MarkerClusterGroup({showCoverageOnHover: false,
             spiderfyDistanceMultiplier: 2,
             disableClusteringAtZoom: 18,
@@ -1228,7 +1263,7 @@
         function style_project_htmltrolleybus_stop_pop_spb_14_0() {
             return {
                 pane: 'pane_project_htmltrolleybus_stop_pop_spb_14',
-                radius: 15.0,
+                radius: 10.0,
                 opacity: 1,
                 color: 'rgba(76,101,174,1.0)',
                 dashArray: '',
@@ -1264,7 +1299,14 @@
             dataVar: 'json_project_htmltrolleybus_stop_pop_spb_14',
             layerName: 'layer_project_htmltrolleybus_stop_pop_spb_14',
             pane: 'pane_project_htmltrolleybus_stop_pop_spb_14',
-            onEachFeature: pop_project_htmltrolleybus_stop_pop_spb_14);
+            onEachFeature: pop_project_htmltrolleybus_stop_pop_spb_14,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_project_htmltrolleybus_stop_pop_spb_14_1(feature));
+            }});
         var cluster_project_htmltrolleybus_stop_pop_spb_14 = new L.MarkerClusterGroup({showCoverageOnHover: false,
             spiderfyDistanceMultiplier: 2,
             disableClusteringAtZoom: 18,
@@ -1320,7 +1362,7 @@
         function style_project_htmltram_stop_pop_spb_15_0() {
             return {
                 pane: 'pane_project_htmltram_stop_pop_spb_15',
-                radius: 15.0,
+                radius: 10.0,
                 opacity: 1,
                 color: 'rgba(196,55,63,1.0)',
                 dashArray: '',
@@ -1356,7 +1398,14 @@
             dataVar: 'json_project_htmltram_stop_pop_spb_15',
             layerName: 'layer_project_htmltram_stop_pop_spb_15',
             pane: 'pane_project_htmltram_stop_pop_spb_15',
-            onEachFeature: pop_project_htmltram_stop_pop_spb_15);
+            onEachFeature: pop_project_htmltram_stop_pop_spb_15,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_project_htmltram_stop_pop_spb_15_1(feature));
+            }});
         var cluster_project_htmltram_stop_pop_spb_15 = new L.MarkerClusterGroup({showCoverageOnHover: false,
             spiderfyDistanceMultiplier: 2,
             disableClusteringAtZoom: 18,
@@ -1396,21 +1445,8 @@
             map.setView(x.getLayers()[0].getLatLng(), 17);
             z = typeof e.choice.properties.label === 'undefined'? e.choice.properties.display_name : e.choice.properties.label;
             console.log(e);
-            e.target.input.value = z;,
-            pointToLayers: [function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.shapeMarker(latlng, style_project_htmltrol_depot_spb_9_0(feature));
-            },function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.marker(latlng, style_project_htmltrol_depot_spb_9_1(feature));
-            },
-        ]});
+            e.target.input.value = z;
+        });
         var search = document.getElementsByClassName("leaflet-photon leaflet-control")[0];
         search.classList.add("leaflet-control-search")
         search.style.display = "flex";
@@ -1430,21 +1466,8 @@
                 last.style.display = "block";
             } else {
                 last.style.display = "none";
-            },
-            pointToLayers: [function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.shapeMarker(latlng, style_project_htmltram_trol_depot_spb_10_0(feature));
-            },function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.marker(latlng, style_project_htmltram_trol_depot_spb_10_1(feature));
-            },
-        ]});
+            }
+        });
         var overlaysTree = [
             {label: '<img src="legend/project_htmltram_stop_pop_spb_15.png" /> project_html — tram_stop_pop_spb', layer: cluster_project_htmltram_stop_pop_spb_15},
             {label: '<img src="legend/project_htmltrolleybus_stop_pop_spb_14.png" /> project_html — trolleybus_stop_pop_spb', layer: cluster_project_htmltrolleybus_stop_pop_spb_14},
@@ -1469,21 +1492,8 @@
             //openedSymbol: '&#8863; &#x1f5c1;',
             //collapseAll: 'Collapse all',
             //expandAll: 'Expand all',
-            collapsed: true,,
-            pointToLayers: [function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.shapeMarker(latlng, style_project_htmltram_depot_spb_11_0(feature));
-            },function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.marker(latlng, style_project_htmltram_depot_spb_11_1(feature));
-            },
-        ]});
+            collapsed: true,
+        });
         lay.addTo(map);
         setBounds();
         </script>        
