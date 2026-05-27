@@ -156,6 +156,23 @@
                 });
             };
         }
+
+        function createStackedMarkerIcon(shape, color, iconUrl, svgSize, baseSize, borderWidth) {
+            var radiusStyle = shape === 'circle' ? '50%' : '0';
+            var baseLeft = Math.round((baseSize - svgSize) / 2);
+            var baseTop = Math.round((baseSize - svgSize) / 2);
+            var html = '<div style="position:relative;width:' + baseSize + 'px;height:' + baseSize + 'px;">' +
+                '<div style="position:absolute;left:0;top:0;width:' + baseSize + 'px;height:' + baseSize + 'px;background:#fff;border:' + borderWidth + 'px solid ' + color + ';border-radius:' + radiusStyle + ';box-sizing:border-box;"></div>' +
+                '<img src="' + iconUrl + '" style="position:absolute;left:' + baseLeft + 'px;top:' + baseTop + 'px;width:' + svgSize + 'px;height:' + svgSize + 'px;display:block;" />' +
+                '</div>';
+            return L.divIcon({
+                html: html,
+                className: 'custom-stacked-marker',
+                iconSize: [baseSize, baseSize],
+                iconAnchor: [baseSize / 2, baseSize / 2],
+                popupAnchor: [0, -baseSize / 2]
+            });
+        }
         map.createPane('pane_CartoDBPositron_0');
         map.getPane('pane_CartoDBPositron_0').style.zIndex = 400;
         var layer_CartoDBPositron_0 = L.tileLayer('https://basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
