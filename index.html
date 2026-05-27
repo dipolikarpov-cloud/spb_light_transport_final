@@ -149,10 +149,10 @@
             return function(cluster) {
                 var count = cluster.getChildCount();
                 return L.divIcon({
-                    html: '<div style="background:' + color + '; color:#111; border:2px solid rgba(255,255,255,0.85); border-radius:50%; width:34px; height:34px; line-height:30px; text-align:center; font-size:11px; font-weight:600; box-shadow:0 1px 4px rgba(0,0,0,0.35);">' + count + '</div>',
+                    html: '<div style="background:' + color + '; color:#111; border:1px solid rgba(255,255,255,0.85); border-radius:50%; width:24px; height:24px; line-height:22px; text-align:center; font-size:9px; font-weight:600; box-shadow:0 1px 3px rgba(0,0,0,0.30);">' + count + '</div>',
                     className: 'custom-transport-cluster',
-                    iconSize: [34, 34],
-                    iconAnchor: [17, 17]
+                    iconSize: [24, 24],
+                    iconAnchor: [12, 12]
                 });
             };
         }
@@ -162,7 +162,7 @@
             var baseLeft = Math.round((baseSize - svgSize) / 2);
             var baseTop = Math.round((baseSize - svgSize) / 2);
             var html = '<div style="position:relative;width:' + baseSize + 'px;height:' + baseSize + 'px;">' +
-                '<div style="position:absolute;left:0;top:0;width:' + baseSize + 'px;height:' + baseSize + 'px;background:#fff;border:' + borderWidth + 'px solid ' + color + ';border-radius:' + radiusStyle + ';box-sizing:border-box;"></div>' +
+                '<div style="position:absolute;left:0;top:0;width:' + baseSize + 'px;height:' + baseSize + 'px;background:#fff;border:' + borderWidth + 'px solid ' + color + ' !important;border-radius:' + radiusStyle + ';box-sizing:border-box;"></div>' +
                 '<img src="' + iconUrl + '" style="position:absolute;left:' + baseLeft + 'px;top:' + baseTop + 'px;width:' + svgSize + 'px;height:' + svgSize + 'px;display:block;" />' +
                 '</div>';
             return L.divIcon({
@@ -838,7 +838,7 @@
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, {icon: createStackedMarkerIcon('square', '#4C65AE', 'markers/project_htmltrol_depot_spb_9.svg', 14, 22, 2), interactive: true});
+                return L.marker(latlng, {icon: createStackedMarkerIcon('square', '#4C65AE', 'markers/project_htmltrol_depot_spb_9.svg', 14, 22, 1), interactive: true});
             }});
         bounds_group.addLayer(layer_project_htmltrol_depot_spb_9);
         function pop_project_htmltram_trol_depot_spb_10(feature, layer) {
@@ -936,7 +936,7 @@
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, {icon: createStackedMarkerIcon('square', '#4C65AE', 'markers/project_htmltram_trol_depot_spb_10.svg', 14, 22, 2), interactive: true});
+                return L.marker(latlng, {icon: createStackedMarkerIcon('square', '#4C65AE', 'markers/project_htmltram_trol_depot_spb_10.svg', 14, 22, 1), interactive: true});
             }});
         bounds_group.addLayer(layer_project_htmltram_trol_depot_spb_10);
         function pop_project_htmltram_depot_spb_11(feature, layer) {
@@ -1034,7 +1034,7 @@
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, {icon: createStackedMarkerIcon('square', '#C4373F', 'markers/project_htmltram_depot_spb_11.svg', 14, 22, 2), interactive: true});
+                return L.marker(latlng, {icon: createStackedMarkerIcon('square', '#C4373F', 'markers/project_htmltram_depot_spb_11.svg', 14, 22, 1), interactive: true});
             }});
         bounds_group.addLayer(layer_project_htmltram_depot_spb_11);
         function pop_project_htmlbus_depot_spb_12(feature, layer) {
@@ -1132,7 +1132,7 @@
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, {icon: createStackedMarkerIcon('square', '#2C8059', 'markers/project_htmlbus_depot_spb_12.svg', 14, 22, 2), interactive: true});
+                return L.marker(latlng, {icon: createStackedMarkerIcon('square', '#2C8059', 'markers/project_htmlbus_depot_spb_12.svg', 14, 22, 1), interactive: true});
             }});
         bounds_group.addLayer(layer_project_htmlbus_depot_spb_12);
         function pop_project_htmlbus_stop_pop_spb_13(feature, layer) {
@@ -1223,7 +1223,7 @@
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, {icon: createStackedMarkerIcon('circle', '#2C8059', 'markers/project_htmlbus_stop_pop_spb_13.svg', 13, 20, 2), interactive: true});
+                return L.marker(latlng, {icon: createStackedMarkerIcon('circle', '#2C8059', 'markers/project_htmlbus_stop_pop_spb_13.svg', 13, 20, 1), interactive: true});
             }});
         var cluster_project_htmlbus_stop_pop_spb_13 = new L.MarkerClusterGroup({showCoverageOnHover: false,
             spiderfyDistanceMultiplier: 2,
@@ -1322,7 +1322,7 @@
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, {icon: createStackedMarkerIcon('circle', '#4C65AE', 'markers/project_htmltrolleybus_stop_pop_spb_14.svg', 13, 20, 2), interactive: true});
+                return L.marker(latlng, {icon: createStackedMarkerIcon('circle', '#4C65AE', 'markers/project_htmltrolleybus_stop_pop_spb_14.svg', 13, 20, 1), interactive: true});
             }});
         var cluster_project_htmltrolleybus_stop_pop_spb_14 = new L.MarkerClusterGroup({showCoverageOnHover: false,
             spiderfyDistanceMultiplier: 2,
@@ -1421,7 +1421,7 @@
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, {icon: createStackedMarkerIcon('circle', '#C4373F', 'markers/project_htmltram_stop_pop_spb_15.svg', 13, 20, 2), interactive: true});
+                return L.marker(latlng, {icon: createStackedMarkerIcon('circle', '#C4373F', 'markers/project_htmltram_stop_pop_spb_15.svg', 13, 20, 1), interactive: true});
             }});
         var cluster_project_htmltram_stop_pop_spb_15 = new L.MarkerClusterGroup({showCoverageOnHover: false,
             spiderfyDistanceMultiplier: 2,
