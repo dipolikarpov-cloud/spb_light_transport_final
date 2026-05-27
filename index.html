@@ -144,6 +144,18 @@
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
+
+        function createTransportClusterIcon(color) {
+            return function(cluster) {
+                var count = cluster.getChildCount();
+                return L.divIcon({
+                    html: '<div style="background:' + color + '; color:#111; border:2px solid rgba(255,255,255,0.85); border-radius:50%; width:34px; height:34px; line-height:30px; text-align:center; font-size:11px; font-weight:600; box-shadow:0 1px 4px rgba(0,0,0,0.35);">' + count + '</div>',
+                    className: 'custom-transport-cluster',
+                    iconSize: [34, 34],
+                    iconAnchor: [17, 17]
+                });
+            };
+        }
         map.createPane('pane_CartoDBPositron_0');
         map.getPane('pane_CartoDBPositron_0').style.zIndex = 400;
         var layer_CartoDBPositron_0 = L.tileLayer('https://basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
@@ -787,7 +799,9 @@
         rotationOrigin: 'center center',
         icon: L.icon({
             iconUrl: 'markers/project_htmltrol_depot_spb_9.svg',
-            iconSize: [10.977782, 10.977782]
+            iconSize: [10.977782, 10.977782],
+            iconAnchor: [5.488891, 5.488891],
+            popupAnchor: [0, -5.488891]
         }),
                 interactive: true,
             }
@@ -795,27 +809,20 @@
         map.createPane('pane_project_htmltrol_depot_spb_9');
         map.getPane('pane_project_htmltrol_depot_spb_9').style.zIndex = 409;
         map.getPane('pane_project_htmltrol_depot_spb_9').style['mix-blend-mode'] = 'normal';
-        var layer_project_htmltrol_depot_spb_9 = new L.geoJson.multiStyle(json_project_htmltrol_depot_spb_9, {
+        var layer_project_htmltrol_depot_spb_9 = new L.geoJson(json_project_htmltrol_depot_spb_9, {
             attribution: '',
             interactive: true,
             dataVar: 'json_project_htmltrol_depot_spb_9',
             layerName: 'layer_project_htmltrol_depot_spb_9',
             pane: 'pane_project_htmltrol_depot_spb_9',
             onEachFeature: pop_project_htmltrol_depot_spb_9,
-            pointToLayers: [function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.marker(latlng, style_project_htmltrol_depot_spb_9_0(feature));
-            },function (feature, latlng) {
+            pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
                 return L.marker(latlng, style_project_htmltrol_depot_spb_9_1(feature));
-            },
-        ]});
+            }});
         bounds_group.addLayer(layer_project_htmltrol_depot_spb_9);
         function pop_project_htmltram_trol_depot_spb_10(feature, layer) {
             var popupContent = '<table>\
@@ -890,7 +897,9 @@
         rotationOrigin: 'center center',
         icon: L.icon({
             iconUrl: 'markers/project_htmltram_trol_depot_spb_10.svg',
-            iconSize: [10.977782, 10.977782]
+            iconSize: [10.977782, 10.977782],
+            iconAnchor: [5.488891, 5.488891],
+            popupAnchor: [0, -5.488891]
         }),
                 interactive: true,
             }
@@ -898,27 +907,20 @@
         map.createPane('pane_project_htmltram_trol_depot_spb_10');
         map.getPane('pane_project_htmltram_trol_depot_spb_10').style.zIndex = 410;
         map.getPane('pane_project_htmltram_trol_depot_spb_10').style['mix-blend-mode'] = 'normal';
-        var layer_project_htmltram_trol_depot_spb_10 = new L.geoJson.multiStyle(json_project_htmltram_trol_depot_spb_10, {
+        var layer_project_htmltram_trol_depot_spb_10 = new L.geoJson(json_project_htmltram_trol_depot_spb_10, {
             attribution: '',
             interactive: true,
             dataVar: 'json_project_htmltram_trol_depot_spb_10',
             layerName: 'layer_project_htmltram_trol_depot_spb_10',
             pane: 'pane_project_htmltram_trol_depot_spb_10',
             onEachFeature: pop_project_htmltram_trol_depot_spb_10,
-            pointToLayers: [function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.marker(latlng, style_project_htmltram_trol_depot_spb_10_0(feature));
-            },function (feature, latlng) {
+            pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
                 return L.marker(latlng, style_project_htmltram_trol_depot_spb_10_1(feature));
-            },
-        ]});
+            }});
         bounds_group.addLayer(layer_project_htmltram_trol_depot_spb_10);
         function pop_project_htmltram_depot_spb_11(feature, layer) {
             var popupContent = '<table>\
@@ -993,7 +995,9 @@
         rotationOrigin: 'center center',
         icon: L.icon({
             iconUrl: 'markers/project_htmltram_depot_spb_11.svg',
-            iconSize: [10.977782, 10.977782]
+            iconSize: [10.977782, 10.977782],
+            iconAnchor: [5.488891, 5.488891],
+            popupAnchor: [0, -5.488891]
         }),
                 interactive: true,
             }
@@ -1001,27 +1005,20 @@
         map.createPane('pane_project_htmltram_depot_spb_11');
         map.getPane('pane_project_htmltram_depot_spb_11').style.zIndex = 411;
         map.getPane('pane_project_htmltram_depot_spb_11').style['mix-blend-mode'] = 'normal';
-        var layer_project_htmltram_depot_spb_11 = new L.geoJson.multiStyle(json_project_htmltram_depot_spb_11, {
+        var layer_project_htmltram_depot_spb_11 = new L.geoJson(json_project_htmltram_depot_spb_11, {
             attribution: '',
             interactive: true,
             dataVar: 'json_project_htmltram_depot_spb_11',
             layerName: 'layer_project_htmltram_depot_spb_11',
             pane: 'pane_project_htmltram_depot_spb_11',
             onEachFeature: pop_project_htmltram_depot_spb_11,
-            pointToLayers: [function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.marker(latlng, style_project_htmltram_depot_spb_11_0(feature));
-            },function (feature, latlng) {
+            pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
                 return L.marker(latlng, style_project_htmltram_depot_spb_11_1(feature));
-            },
-        ]});
+            }});
         bounds_group.addLayer(layer_project_htmltram_depot_spb_11);
         function pop_project_htmlbus_depot_spb_12(feature, layer) {
             var popupContent = '<table>\
@@ -1096,7 +1093,9 @@
         rotationOrigin: 'center center',
         icon: L.icon({
             iconUrl: 'markers/project_htmlbus_depot_spb_12.svg',
-            iconSize: [10.977782, 10.977782]
+            iconSize: [10.977782, 10.977782],
+            iconAnchor: [5.488891, 5.488891],
+            popupAnchor: [0, -5.488891]
         }),
                 interactive: true,
             }
@@ -1104,27 +1103,20 @@
         map.createPane('pane_project_htmlbus_depot_spb_12');
         map.getPane('pane_project_htmlbus_depot_spb_12').style.zIndex = 412;
         map.getPane('pane_project_htmlbus_depot_spb_12').style['mix-blend-mode'] = 'normal';
-        var layer_project_htmlbus_depot_spb_12 = new L.geoJson.multiStyle(json_project_htmlbus_depot_spb_12, {
+        var layer_project_htmlbus_depot_spb_12 = new L.geoJson(json_project_htmlbus_depot_spb_12, {
             attribution: '',
             interactive: true,
             dataVar: 'json_project_htmlbus_depot_spb_12',
             layerName: 'layer_project_htmlbus_depot_spb_12',
             pane: 'pane_project_htmlbus_depot_spb_12',
             onEachFeature: pop_project_htmlbus_depot_spb_12,
-            pointToLayers: [function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.marker(latlng, style_project_htmlbus_depot_spb_12_0(feature));
-            },function (feature, latlng) {
+            pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
                 return L.marker(latlng, style_project_htmlbus_depot_spb_12_1(feature));
-            },
-        ]});
+            }});
         bounds_group.addLayer(layer_project_htmlbus_depot_spb_12);
         function pop_project_htmlbus_stop_pop_spb_13(feature, layer) {
             var popupContent = '<table>\
@@ -1192,7 +1184,9 @@
         rotationOrigin: 'center center',
         icon: L.icon({
             iconUrl: 'markers/project_htmlbus_stop_pop_spb_13.svg',
-            iconSize: [8.233346, 8.233346]
+            iconSize: [8.233346, 8.233346],
+            iconAnchor: [4.116673, 4.116673],
+            popupAnchor: [0, -4.116673]
         }),
                 interactive: true,
             }
@@ -1200,29 +1194,25 @@
         map.createPane('pane_project_htmlbus_stop_pop_spb_13');
         map.getPane('pane_project_htmlbus_stop_pop_spb_13').style.zIndex = 413;
         map.getPane('pane_project_htmlbus_stop_pop_spb_13').style['mix-blend-mode'] = 'normal';
-        var layer_project_htmlbus_stop_pop_spb_13 = new L.geoJson.multiStyle(json_project_htmlbus_stop_pop_spb_13, {
+        var layer_project_htmlbus_stop_pop_spb_13 = new L.geoJson(json_project_htmlbus_stop_pop_spb_13, {
             attribution: '',
             interactive: true,
             dataVar: 'json_project_htmlbus_stop_pop_spb_13',
             layerName: 'layer_project_htmlbus_stop_pop_spb_13',
             pane: 'pane_project_htmlbus_stop_pop_spb_13',
             onEachFeature: pop_project_htmlbus_stop_pop_spb_13,
-            pointToLayers: [function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.marker(latlng, style_project_htmlbus_stop_pop_spb_13_0(feature));
-            },function (feature, latlng) {
+            pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
                 return L.marker(latlng, style_project_htmlbus_stop_pop_spb_13_1(feature));
-            },
-        ]});
+            }});
         var cluster_project_htmlbus_stop_pop_spb_13 = new L.MarkerClusterGroup({showCoverageOnHover: false,
-            spiderfyDistanceMultiplier: 2});
+            spiderfyDistanceMultiplier: 2,
+            disableClusteringAtZoom: 18,
+            maxClusterRadius: 40,
+            iconCreateFunction: createTransportClusterIcon('#2C8059')});
         cluster_project_htmlbus_stop_pop_spb_13.addLayer(layer_project_htmlbus_stop_pop_spb_13);
 
         bounds_group.addLayer(layer_project_htmlbus_stop_pop_spb_13);
@@ -1293,7 +1283,9 @@
         rotationOrigin: 'center center',
         icon: L.icon({
             iconUrl: 'markers/project_htmltrolleybus_stop_pop_spb_14.svg',
-            iconSize: [8.233346, 8.233346]
+            iconSize: [8.233346, 8.233346],
+            iconAnchor: [4.116673, 4.116673],
+            popupAnchor: [0, -4.116673]
         }),
                 interactive: true,
             }
@@ -1301,29 +1293,25 @@
         map.createPane('pane_project_htmltrolleybus_stop_pop_spb_14');
         map.getPane('pane_project_htmltrolleybus_stop_pop_spb_14').style.zIndex = 414;
         map.getPane('pane_project_htmltrolleybus_stop_pop_spb_14').style['mix-blend-mode'] = 'normal';
-        var layer_project_htmltrolleybus_stop_pop_spb_14 = new L.geoJson.multiStyle(json_project_htmltrolleybus_stop_pop_spb_14, {
+        var layer_project_htmltrolleybus_stop_pop_spb_14 = new L.geoJson(json_project_htmltrolleybus_stop_pop_spb_14, {
             attribution: '',
             interactive: true,
             dataVar: 'json_project_htmltrolleybus_stop_pop_spb_14',
             layerName: 'layer_project_htmltrolleybus_stop_pop_spb_14',
             pane: 'pane_project_htmltrolleybus_stop_pop_spb_14',
             onEachFeature: pop_project_htmltrolleybus_stop_pop_spb_14,
-            pointToLayers: [function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.marker(latlng, style_project_htmltrolleybus_stop_pop_spb_14_0(feature));
-            },function (feature, latlng) {
+            pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
                 return L.marker(latlng, style_project_htmltrolleybus_stop_pop_spb_14_1(feature));
-            },
-        ]});
+            }});
         var cluster_project_htmltrolleybus_stop_pop_spb_14 = new L.MarkerClusterGroup({showCoverageOnHover: false,
-            spiderfyDistanceMultiplier: 2});
+            spiderfyDistanceMultiplier: 2,
+            disableClusteringAtZoom: 18,
+            maxClusterRadius: 40,
+            iconCreateFunction: createTransportClusterIcon('#4C65AE')});
         cluster_project_htmltrolleybus_stop_pop_spb_14.addLayer(layer_project_htmltrolleybus_stop_pop_spb_14);
 
         bounds_group.addLayer(layer_project_htmltrolleybus_stop_pop_spb_14);
@@ -1394,7 +1382,9 @@
         rotationOrigin: 'center center',
         icon: L.icon({
             iconUrl: 'markers/project_htmltram_stop_pop_spb_15.svg',
-            iconSize: [8.233346, 8.233346]
+            iconSize: [8.233346, 8.233346],
+            iconAnchor: [4.116673, 4.116673],
+            popupAnchor: [0, -4.116673]
         }),
                 interactive: true,
             }
@@ -1402,29 +1392,25 @@
         map.createPane('pane_project_htmltram_stop_pop_spb_15');
         map.getPane('pane_project_htmltram_stop_pop_spb_15').style.zIndex = 415;
         map.getPane('pane_project_htmltram_stop_pop_spb_15').style['mix-blend-mode'] = 'normal';
-        var layer_project_htmltram_stop_pop_spb_15 = new L.geoJson.multiStyle(json_project_htmltram_stop_pop_spb_15, {
+        var layer_project_htmltram_stop_pop_spb_15 = new L.geoJson(json_project_htmltram_stop_pop_spb_15, {
             attribution: '',
             interactive: true,
             dataVar: 'json_project_htmltram_stop_pop_spb_15',
             layerName: 'layer_project_htmltram_stop_pop_spb_15',
             pane: 'pane_project_htmltram_stop_pop_spb_15',
             onEachFeature: pop_project_htmltram_stop_pop_spb_15,
-            pointToLayers: [function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.marker(latlng, style_project_htmltram_stop_pop_spb_15_0(feature));
-            },function (feature, latlng) {
+            pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
                 return L.marker(latlng, style_project_htmltram_stop_pop_spb_15_1(feature));
-            },
-        ]});
+            }});
         var cluster_project_htmltram_stop_pop_spb_15 = new L.MarkerClusterGroup({showCoverageOnHover: false,
-            spiderfyDistanceMultiplier: 2});
+            spiderfyDistanceMultiplier: 2,
+            disableClusteringAtZoom: 18,
+            maxClusterRadius: 40,
+            iconCreateFunction: createTransportClusterIcon('#C4373F')});
         cluster_project_htmltram_stop_pop_spb_15.addLayer(layer_project_htmltram_stop_pop_spb_15);
 
         bounds_group.addLayer(layer_project_htmltram_stop_pop_spb_15);
